@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+  <reference id="bundleQueryFactory" interface="biz.accelsis.osgi.inspector.bundles.BundleQueryFactory" />
+  <reference id="serviceQueryFactory" interface="biz.accelsis.osgi.inspector.services.ServiceQueryFactory" />
+  <reference id="componentQueryFactory" interface="biz.accelsis.osgi.inspector.components.ComponentQueryFactory" />
+
+  <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.0.0">
+    <command name="inspector/bundles">
+      <action class="com.github.stiepf.inspector.commands.internal.FindBundlesCommand">
+        <property name="bundleQueryFactory" ref="bundleQueryFactory" />
+      </action>
+    </command>
+    <command name="inspector/services">
+      <action class="com.github.stiepf.inspector.commands.internal.FindServicesCommand">
+        <property name="serviceQueryFactory" ref="serviceQueryFactory" />
+      </action>
+    </command>
+    <command name="inspector/components">
+      <action class="com.github.stiepf.inspector.commands.internal.FindComponentsCommand">
+        <property name="componentQueryFactory" ref="componentQueryFactory" />
+      </action>
+    </command>
+  </command-bundle>
+</blueprint>
