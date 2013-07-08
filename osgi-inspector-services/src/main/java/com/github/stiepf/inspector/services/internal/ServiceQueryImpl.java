@@ -48,7 +48,7 @@ public class ServiceQueryImpl implements ServiceQuery {
   public ServiceQuery providedBy(final Bundle bundle) {
     return addPredicate(new ServicePredicate() {
       @Override
-      public boolean matches(ServiceReference reference) {
+      boolean matches(ServiceReference reference) {
         return reference.getBundle().equals(bundle);
       }
     });
@@ -58,7 +58,7 @@ public class ServiceQueryImpl implements ServiceQuery {
   public ServiceQuery consumedBy(final Bundle bundle) {
     return addPredicate(new ServicePredicate() {
       @Override
-      public boolean matches(ServiceReference reference) {
+      boolean matches(ServiceReference reference) {
         Bundle[] usingBundles = reference.getUsingBundles();
         if (usingBundles != null) {
           return Arrays.asList(usingBundles).contains(bundle);
@@ -74,7 +74,7 @@ public class ServiceQueryImpl implements ServiceQuery {
   public ServiceQuery hasProperty(final String key) {
     return addPredicate(new ServicePredicate() {
       @Override
-      public boolean matches(ServiceReference reference) {
+      boolean matches(ServiceReference reference) {
         return reference.getProperty(key) != null;
       }
     });
@@ -84,7 +84,7 @@ public class ServiceQueryImpl implements ServiceQuery {
   public ServiceQuery hasPropertyValue(final String key, final Object value) {
     return addPredicate(new ServicePredicate() {
       @Override
-      public boolean matches(ServiceReference reference) {
+      boolean matches(ServiceReference reference) {
         Object property = reference.getProperty(key);
         if (property != null) {
           return property.equals(value);

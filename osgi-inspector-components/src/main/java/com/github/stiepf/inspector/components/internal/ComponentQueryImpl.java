@@ -50,7 +50,7 @@ public class ComponentQueryImpl implements ComponentQuery {
   public ComponentQuery componentId(final String id) {
     return addPredicate(new ComponentPredicate() {
       @Override
-      public boolean matches(ComponentDescription description) {
+      boolean matches(ComponentDescription description) {
         String componentId = description.getId();
         if (componentId != null) {
           return componentId.toLowerCase().contains(id.toLowerCase());
@@ -65,7 +65,7 @@ public class ComponentQueryImpl implements ComponentQuery {
   public ComponentQuery bundleId(final Long bundleId) {
     return addPredicate(new ServiceReferencePredicate() {
       @Override
-      public boolean matches(ServiceReference reference) {
+      boolean matches(ServiceReference reference) {
         return bundleId.equals(reference.getBundle().getBundleId());
       }
     });
@@ -75,7 +75,7 @@ public class ComponentQueryImpl implements ComponentQuery {
   public ComponentQuery symbolicName(final String symbolicName) {
     return addPredicate(new ServiceReferencePredicate() {
       @Override
-      public boolean matches(ServiceReference reference) {
+      boolean matches(ServiceReference reference) {
         return reference.getBundle().getSymbolicName().equals(symbolicName);
       }
     });
@@ -85,7 +85,7 @@ public class ComponentQueryImpl implements ComponentQuery {
   public ComponentQuery type(final String className) {
     return addPredicate(new ComponentPredicate() {
       @Override
-      public boolean matches(ComponentDescription description) {
+      boolean matches(ComponentDescription description) {
         return description.getClassNames().contains(className);
       }
     });
@@ -95,7 +95,7 @@ public class ComponentQueryImpl implements ComponentQuery {
   public ComponentQuery bean() {
     return addPredicate(new ComponentPredicate() {
       @Override
-      public boolean matches(ComponentDescription description) {
+      boolean matches(ComponentDescription description) {
         return ComponentType.BEAN.equals(description.getComponentType());
       }
     });
@@ -105,7 +105,7 @@ public class ComponentQueryImpl implements ComponentQuery {
   public ComponentQuery service() {
     return addPredicate(new ComponentPredicate() {
       @Override
-      public boolean matches(ComponentDescription description) {
+      boolean matches(ComponentDescription description) {
         return ComponentType.SERVICE.equals(description.getComponentType());
       }
     });
@@ -115,7 +115,7 @@ public class ComponentQueryImpl implements ComponentQuery {
   public ComponentQuery reference() {
     return addPredicate(new ComponentPredicate() {
       @Override
-      public boolean matches(ComponentDescription description) {
+      boolean matches(ComponentDescription description) {
         return ComponentType.REFERENCE.equals(description.getComponentType());
       }
     });

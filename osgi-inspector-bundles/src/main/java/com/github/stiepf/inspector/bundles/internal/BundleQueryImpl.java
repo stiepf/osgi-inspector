@@ -46,7 +46,7 @@ public class BundleQueryImpl implements BundleQuery {
   public BundleQuery importsPackage(final String packageName) {
     return addPredicate(new BundlePredicate() {
       @Override
-      public boolean matches(Bundle bundle) {
+      boolean matches(Bundle bundle) {
         ExportedPackage[] exportedPackages = packageAdmin.getExportedPackages(packageName);
         if (exportedPackages != null) {
           for (ExportedPackage ep : exportedPackages) {
@@ -64,7 +64,7 @@ public class BundleQueryImpl implements BundleQuery {
   public BundleQuery exportsPackage(final String packageName) {
     return addPredicate(new BundlePredicate() {
       @Override
-      public boolean matches(Bundle bundle) {
+      boolean matches(Bundle bundle) {
         ExportedPackage[] exportedPackages = packageAdmin.getExportedPackages(bundle);
         if (exportedPackages != null) {
           for (ExportedPackage ep : exportedPackages) {
@@ -81,7 +81,7 @@ public class BundleQueryImpl implements BundleQuery {
   public BundleQuery providesService(final String serviceInterface) {
     return addPredicate(new BundlePredicate() {
       @Override
-      public boolean matches(Bundle bundle) {
+      boolean matches(Bundle bundle) {
         for (ServiceReference sr : referencesFor(serviceInterface)) {
           if (bundle.equals(sr.getBundle()))
             return true;
@@ -95,7 +95,7 @@ public class BundleQueryImpl implements BundleQuery {
   public BundleQuery consumesService(final String serviceInterface) {
     return addPredicate(new BundlePredicate() {
       @Override
-      public boolean matches(Bundle bundle) {
+      boolean matches(Bundle bundle) {
         ServiceReference[] inUse = bundle.getServicesInUse();
         List<ServiceReference> available = referencesFor(serviceInterface);
         if (inUse != null) {
@@ -113,7 +113,7 @@ public class BundleQueryImpl implements BundleQuery {
   public BundleQuery hasHeader(final String key, final String value) {
     return addPredicate(new BundlePredicate() {
       @Override
-      public boolean matches(Bundle bundle) {
+      boolean matches(Bundle bundle) {
         String headerValue = (String) bundle.getHeaders().get(key);
         return headerValue != null && headerValue.equals(value);
       }
@@ -124,7 +124,7 @@ public class BundleQueryImpl implements BundleQuery {
   public BundleQuery hasEntry(final String path) {
     return addPredicate(new BundlePredicate() {
       @Override
-      public boolean matches(Bundle bundle) {
+      boolean matches(Bundle bundle) {
         return bundle.getEntry(path) != null;
       }
     });
@@ -134,7 +134,7 @@ public class BundleQueryImpl implements BundleQuery {
   public BundleQuery inState(final int bundleState) {
     return addPredicate(new BundlePredicate() {
       @Override
-      public boolean matches(Bundle bundle) {
+      boolean matches(Bundle bundle) {
         return bundleState == bundle.getState();
       }
     });

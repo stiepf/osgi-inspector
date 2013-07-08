@@ -15,8 +15,8 @@ package com.github.stiepf.inspector.components.internal;
 
 import com.github.stiepf.inspector.components.ComponentDescription;
 
-public interface ComponentPredicate {
+abstract class ComponentPredicate {
 
-  boolean matches(ComponentDescription componentDescription);
+  abstract boolean matches(ComponentDescription componentDescription);
 
 }

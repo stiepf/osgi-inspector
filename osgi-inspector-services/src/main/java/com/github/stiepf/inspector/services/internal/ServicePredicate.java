@@ -15,8 +15,8 @@ package com.github.stiepf.inspector.services.internal;
 
 import org.osgi.framework.ServiceReference;
 
-public interface ServicePredicate {
+abstract class ServicePredicate {
 
-  boolean matches(ServiceReference reference);
+  abstract boolean matches(ServiceReference reference);
 
 }

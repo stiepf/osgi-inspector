@@ -15,8 +15,8 @@ package com.github.stiepf.inspector.bundles.internal;
 
 import org.osgi.framework.Bundle;
 
-public interface BundlePredicate {
+abstract class BundlePredicate {
 
-  boolean matches(Bundle bundle);
+  abstract boolean matches(Bundle bundle);
 
 }
