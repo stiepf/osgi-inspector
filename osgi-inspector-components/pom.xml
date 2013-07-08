@@ -49,7 +49,7 @@ limitations under the License.
         <artifactId>maven-bundle-plugin</artifactId>
         <configuration>
           <instructions>
-            <Bundle-Activator>biz.accelsis.osgi.inspector.components.internal.Activator</Bundle-Activator>
+            <Bundle-Activator>com.github.stiepf.inspector.components.internal.Activator</Bundle-Activator>
           </instructions>
         </configuration>
       </plugin>

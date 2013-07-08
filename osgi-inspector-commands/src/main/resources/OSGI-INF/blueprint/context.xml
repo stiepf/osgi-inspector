@@ -14,9 +14,9 @@ limitations under the License.
 -->
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
 
-  <reference id="bundleQueryFactory" interface="biz.accelsis.osgi.inspector.bundles.BundleQueryFactory" />
-  <reference id="serviceQueryFactory" interface="biz.accelsis.osgi.inspector.services.ServiceQueryFactory" />
-  <reference id="componentQueryFactory" interface="biz.accelsis.osgi.inspector.components.ComponentQueryFactory" />
+  <reference id="bundleQueryFactory" interface="com.github.stiepf.inspector.bundles.BundleQueryFactory" />
+  <reference id="serviceQueryFactory" interface="com.github.stiepf.inspector.services.ServiceQueryFactory" />
+  <reference id="componentQueryFactory" interface="com.github.stiepf.inspector.components.ComponentQueryFactory" />
 
   <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.0.0">
     <command name="inspector/bundles">
