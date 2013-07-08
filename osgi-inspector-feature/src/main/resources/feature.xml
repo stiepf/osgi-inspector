@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<features name="osgi-inspector-${project.version}">
+  <feature name="osgi-inspector" version="${project.version}">
+    <bundle start-level="80">mvn:com.github.stiepf.inspector/osgi-inspector-bundles/${project.version}</bundle>
+    <bundle start-level="80">mvn:com.github.stiepf.inspector/osgi-inspector-services/${project.version}</bundle>
+    <bundle start-level="80">mvn:com.github.stiepf.inspector/osgi-inspector-components/${project.version}</bundle>
+    <bundle start-level="80">mvn:com.github.stiepf.inspector/osgi-inspector-commands/${project.version}</bundle>
+  </feature>
+</features>
