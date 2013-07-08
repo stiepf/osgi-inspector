@@ -17,7 +17,7 @@ limitations under the License.
 
   <groupId>com.github.stiepf.inspector</groupId>
   <artifactId>osgi-inspector</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1.0</version>
   <name>Stiepf::OSGi-Inspector::Parent</name>
   <description>Runtime analysis of OSGi components</description>
   <packaging>pom</packaging>
