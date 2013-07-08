@@ -1,0 +1,7 @@
+# MVN structure
+target/
+
+# Eclipse
+.project
+.classpath
+.settings/
