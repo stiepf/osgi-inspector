@@ -42,22 +42,22 @@ public class FindBundlesCommand extends OsgiCommandSupport {
   }
 
   @Option(name = "--exports", aliases = { "-x" }, description = "exported package")
-  private String exports;
+  String exports;
 
   @Option(name = "--imports", aliases = { "-i" }, description = "imported package")
-  private String imports;
+  String imports;
 
   @Option(name = "--consumes", aliases = { "-c" }, description = "consumed servcice interface")
-  private String consumes;
+  String consumes;
 
   @Option(name = "--provides", aliases = { "-p" }, description = "provides servcice interface")
-  private String provides;
+  String provides;
 
-  @Option(name = "--entry", aliases = { "-e" }, description = "has bundle manifest entry")
-  private String entry;
+  @Option(name = "--entry", aliases = { "-e" }, description = "contains path entry")
+  String entry;
 
   @Option(name = "--header", aliases = { "-h" }, description = "has manifest header value")
-  private String header;
+  String header;
 
   private BundleQueryFactory bundleQueryFactory;
 
