@@ -18,7 +18,7 @@ import org.osgi.framework.BundleContext;
 import com.github.stiepf.inspector.components.ComponentQuery;
 import com.github.stiepf.inspector.components.ComponentQueryFactory;
 
-public class ComponentQueryFactoryImpl implements ComponentQueryFactory {
+class ComponentQueryFactoryImpl implements ComponentQueryFactory {
 
   private BundleContext bundleContext;
 

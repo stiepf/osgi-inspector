@@ -34,7 +34,7 @@ import com.github.stiepf.inspector.components.ComponentQuery;
 import com.github.stiepf.inspector.components.ComponentType;
 import com.github.stiepf.inspector.components.ContainerDescription;
 
-public class ComponentQueryImpl implements ComponentQuery {
+class ComponentQueryImpl implements ComponentQuery {
 
   private BundleContext bundleContext;
 

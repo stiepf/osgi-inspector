@@ -27,7 +27,7 @@ import org.osgi.service.packageadmin.PackageAdmin;
 
 import com.github.stiepf.inspector.bundles.BundleQuery;
 
-public class BundleQueryImpl implements BundleQuery {
+class BundleQueryImpl implements BundleQuery {
 
   private final BundleContext bundleContext;
 

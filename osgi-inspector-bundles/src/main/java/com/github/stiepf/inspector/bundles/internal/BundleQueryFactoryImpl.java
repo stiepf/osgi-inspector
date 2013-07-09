@@ -18,7 +18,7 @@ import org.osgi.framework.BundleContext;
 import com.github.stiepf.inspector.bundles.BundleQuery;
 import com.github.stiepf.inspector.bundles.BundleQueryFactory;
 
-public class BundleQueryFactoryImpl implements BundleQueryFactory {
+class BundleQueryFactoryImpl implements BundleQueryFactory {
 
   private BundleContext bundleContext;
 

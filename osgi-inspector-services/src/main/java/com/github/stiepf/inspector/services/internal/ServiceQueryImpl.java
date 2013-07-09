@@ -24,7 +24,7 @@ import org.osgi.framework.ServiceReference;
 
 import com.github.stiepf.inspector.services.ServiceQuery;
 
-public class ServiceQueryImpl implements ServiceQuery {
+class ServiceQueryImpl implements ServiceQuery {
 
   private BundleContext bundleContext;
 
