@@ -26,6 +26,7 @@
     <module>osgi-inspector-services</module>
     <module>osgi-inspector-components</module>
     <module>osgi-inspector-commands</module>
+	<module>osgi-inspector-tests</module>
     <module>osgi-inspector-feature</module>
   </modules>
 

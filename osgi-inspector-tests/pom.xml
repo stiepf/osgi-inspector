@@ -14,12 +14,20 @@
     <relativePath>..</relativePath>
   </parent>
 
-  <artifactId>osgi-inspector-bundles</artifactId>
-  <name>Stiepf::OSGi-Inspector::Bundles</name>
-  <description>Simplified bundle query interface</description>
-  <packaging>bundle</packaging>
+  <artifactId>osgi-inspector-tests</artifactId>
+  <name>Stiepf::OSGi-Inspector::Tests</name>
+  <description>OSGI Inspector integration tests</description>
+  <packaging>jar</packaging>
 
   <dependencies>
+    <dependency>
+      <groupId>com.github.stiepf.inspector</groupId>
+      <artifactId>osgi-inspector-bundles</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.github.stiepf.inspector</groupId>
+      <artifactId>osgi-inspector-services</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.osgi</groupId>
       <artifactId>org.osgi.core</artifactId>
@@ -29,8 +37,25 @@
       <artifactId>junit</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
+      <groupId>org.ops4j.pax.exam</groupId>
+      <artifactId>pax-exam-container-native</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.exam</groupId>
+      <artifactId>pax-exam-junit4</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.exam</groupId>
+      <artifactId>pax-exam-link-mvn</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.ops4j.pax.url</groupId>
+      <artifactId>pax-url-aether</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.framework</artifactId>
     </dependency>
 
     <dependency>
@@ -41,15 +66,6 @@
 
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <configuration>
-          <instructions>
-            <Bundle-Activator>com.github.stiepf.inspector.bundles.internal.Activator</Bundle-Activator>
-          </instructions>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
 

@@ -13,6 +13,9 @@
  */
 package com.github.stiepf.inspector.services.internal;
 
+import java.util.Dictionary;
+import java.util.Hashtable;
+
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
@@ -26,7 +29,9 @@ public class Activator implements BundleActivator {
   @Override
   public void start(BundleContext context) throws Exception {
     ServiceQueryFactory factory = new ServiceQueryFactoryImpl(context);
-    factoryRegistration = context.registerService(ServiceQueryFactory.class.getName(), factory, null);
+    Dictionary<String, String> properties = new Hashtable<String, String>();
+    properties.put("name", "ServiceQueryService");
+    factoryRegistration = context.registerService(ServiceQueryFactory.class.getName(), factory, properties);
   }
 
   @Override
