@@ -29,6 +29,10 @@
       <artifactId>osgi-inspector-services</artifactId>
     </dependency>
     <dependency>
+      <groupId>com.github.stiepf.inspector</groupId>
+      <artifactId>osgi-inspector-components</artifactId>
+    </dependency>    
+    <dependency>
       <groupId>org.osgi</groupId>
       <artifactId>org.osgi.core</artifactId>
     </dependency>
@@ -57,7 +61,10 @@
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.framework</artifactId>
     </dependency>
-
+    <dependency>
+      <groupId>org.apache.aries.blueprint</groupId>
+      <artifactId>org.apache.aries.blueprint</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>

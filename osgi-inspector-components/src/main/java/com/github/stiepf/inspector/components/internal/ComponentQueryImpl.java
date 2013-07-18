@@ -13,6 +13,8 @@
  */
 package com.github.stiepf.inspector.components.internal;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -135,18 +137,20 @@ class ComponentQueryImpl implements ComponentQuery {
           ContainerDescription cd = new ContainerDescription(b);
 
           BlueprintContainer bc = (BlueprintContainer) bundleContext.getService(r);
-          Set<String> componentIds = (Set<String>) bc.getComponentIds();
-          for (String cid : componentIds) {
-            ComponentMetadata cm = bc.getComponentMetadata(cid);
-            ComponentDescription compDesc = convert(bc, cm);
-            if (componentMatches(compDesc)) {
-              cd.addComponentDescription(compDesc);
+          if (bc != null) {
+            Set<String> componentIds = (Set<String>) bc.getComponentIds();
+            for (String cid : componentIds) {
+              ComponentMetadata cm = bc.getComponentMetadata(cid);
+              ComponentDescription compDesc = convert(bc, cm);
+              if (componentMatches(compDesc)) {
+                cd.addComponentDescription(compDesc);
+              }
             }
+            if (!cd.getComponentDescriptions().isEmpty()) {
+              result.add(cd);
+            }
+            bundleContext.ungetService(r);
           }
-          if (!cd.getComponentDescriptions().isEmpty()) {
-            result.add(cd);
-          }
-          bundleContext.ungetService(r);
         }
       }
     } catch (InvalidSyntaxException e) {
