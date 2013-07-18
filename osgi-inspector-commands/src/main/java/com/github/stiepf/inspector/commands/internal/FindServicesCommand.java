@@ -86,7 +86,7 @@ public class FindServicesCommand extends OsgiCommandSupport {
   }
 
   private void printResult(List<ServiceReference> references) {
-    PrintStream out = session.getConsole();
+    PrintStream out = System.out;
     out.println("Service ID  Bundle ID Implemented Interfaces");
     out.println("----------|----------|---------------------------------");
     for (ServiceReference sr : references) {

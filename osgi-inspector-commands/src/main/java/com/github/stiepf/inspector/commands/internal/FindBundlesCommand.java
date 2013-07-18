@@ -103,7 +103,7 @@ public class FindBundlesCommand extends OsgiCommandSupport {
   }
 
   private void printResult(List<Bundle> result) {
-    PrintStream out = session.getConsole();
+    PrintStream out = System.out;
     out.println("  ID  State     Bundle (Version)");
     out.println("----|----------|---------------------------------------");
     for (Bundle b : result) {

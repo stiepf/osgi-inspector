@@ -97,7 +97,7 @@ public class FindComponentsCommand extends OsgiCommandSupport {
   }
 
   private void printResult(List<ContainerDescription> descriptions) {
-    PrintStream out = session.getConsole();
+    PrintStream out = System.out;
 
     for (ContainerDescription cd : descriptions) {
       out.println("Components of " + cd.getSymbolicName() + "(" + cd.getBundleId() + ")");

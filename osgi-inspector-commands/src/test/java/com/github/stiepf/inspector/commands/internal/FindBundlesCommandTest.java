@@ -16,8 +16,6 @@ package com.github.stiepf.inspector.commands.internal;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -118,14 +116,10 @@ public class FindBundlesCommandTest {
     List<Bundle> bundles = new ArrayList<Bundle>();
     bundles.add(mockBundle());
     
-    ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-    PrintStream out = new PrintStream(buffer);
     when(bundleQueryFactoryMock.createBundleQuery()).thenReturn(bundleQueryMock);
     when(bundleQueryMock.list()).thenReturn(bundles);
-    when(sessionMock.getConsole()).thenReturn(out);
     
     Object result = underTest.execute(sessionMock);
-    assertTrue(buffer.toString().contains("[111][Active  ][Dummy (1.1.1)]"));
     assertNull(result);
   }
   
