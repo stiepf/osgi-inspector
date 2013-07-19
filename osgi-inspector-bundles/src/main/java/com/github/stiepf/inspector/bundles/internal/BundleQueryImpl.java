@@ -180,4 +180,8 @@ class BundleQueryImpl implements BundleQuery {
     }
     return result;
   }
+  
+  List<BundlePredicate> getPredicates() {
+    return predicates;
+  }
 }
