@@ -62,7 +62,7 @@ public class ComponentQueryFactoryTest {
   
   @Before
   public void waitForServices() throws Exception {
-    Thread.sleep(20);
+    Thread.sleep(50);
   }
   
   @Test
@@ -107,6 +107,16 @@ public class ComponentQueryFactoryTest {
     assertQuery(6, underTest.createComponentQuery().bundleId(blueprint.getBundleId()).type("org.apache.aries.blueprint.NamespaceHandler"));
   }
   
+  @Test
+  public void combined() throws Exception {
+    Bundle blueprint = packageAdmin.getBundle(BeanProcessor.class);
+    ComponentQuery componentQuery = underTest.createComponentQuery()
+        .bundleId(blueprint.getBundleId())
+        .type("org.apache.aries.blueprint.NamespaceHandler")
+        .service()
+        .componentId("component-1");
+    assertQuery(1, componentQuery);
+  }
   
   private void assertQuery(int expected, ComponentQuery query) {
     List<ContainerDescription> cds = query.list();
