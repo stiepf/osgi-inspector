@@ -37,7 +37,7 @@ class BundleQueryImpl implements BundleQuery {
 
   private PackageAdmin packageAdmin;
 
-  public BundleQueryImpl(BundleContext bundleContext) {
+  BundleQueryImpl(BundleContext bundleContext) {
     this.bundleContext = bundleContext;
     packageAdminReference = bundleContext.getServiceReference(PackageAdmin.class.getName());
   }

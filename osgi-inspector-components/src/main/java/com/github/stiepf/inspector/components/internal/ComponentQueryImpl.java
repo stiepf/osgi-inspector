@@ -42,7 +42,7 @@ class ComponentQueryImpl implements ComponentQuery {
 
   private List<ServiceReferencePredicate> serviceRefPredicates = new LinkedList<ServiceReferencePredicate>();
 
-  public ComponentQueryImpl(BundleContext bundleContext) {
+  ComponentQueryImpl(BundleContext bundleContext) {
     this.bundleContext = bundleContext;
   }
 

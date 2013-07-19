@@ -34,7 +34,7 @@ class ServiceQueryImpl implements ServiceQuery {
 
   private String filter;
 
-  public ServiceQueryImpl(BundleContext bundleContext) {
+  ServiceQueryImpl(BundleContext bundleContext) {
     this.bundleContext = bundleContext;
   }
 
