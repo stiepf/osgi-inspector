@@ -50,6 +50,10 @@ limitations under the License.
         <configuration>
           <instructions>
             <Bundle-Activator>com.github.stiepf.inspector.components.internal.Activator</Bundle-Activator>
+            <Import-Package>
+              org.apache.aries.blueprint;version="[0.3,2)",
+              *
+            </Import-Package>
           </instructions>
         </configuration>
       </plugin>

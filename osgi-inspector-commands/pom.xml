@@ -33,10 +33,6 @@
       <artifactId>osgi-inspector-components</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.apache.aries.blueprint</groupId>
-      <artifactId>org.apache.aries.blueprint</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.apache.karaf.shell</groupId>
       <artifactId>org.apache.karaf.shell.console</artifactId>
     </dependency>
@@ -69,6 +65,7 @@
               org.apache.felix.service.command,
               org.apache.felix.gogo.commands,
               org.apache.karaf.shell.console,
+              org.apache.aries.blueprint;version="[0.3,2)",
               *
             </Import-Package>
             <Private-Package>!*</Private-Package>

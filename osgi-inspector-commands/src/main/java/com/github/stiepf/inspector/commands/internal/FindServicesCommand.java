@@ -46,7 +46,7 @@ public class FindServicesCommand extends OsgiCommandSupport {
   @Option(name = "--propertyKey", aliases = { "-k" }, description = "service property key")
   private String propertyKey;
 
-  @Option(name = "--propertyKey", aliases = { "-v" }, description = "service property value")
+  @Option(name = "--propertyValue", aliases = { "-v" }, description = "service property key:value")
   private String propertyValue;
 
   private ServiceQueryFactory serviceQueryFactory;
