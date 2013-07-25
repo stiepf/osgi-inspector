@@ -13,16 +13,12 @@
  */
 package com.github.stiepf.inspector.bundles.internal;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
-import org.osgi.service.packageadmin.ExportedPackage;
 import org.osgi.service.packageadmin.PackageAdmin;
 
 import com.github.stiepf.inspector.bundles.BundleQuery;
@@ -40,109 +36,46 @@ class BundleQueryImpl implements BundleQuery {
   BundleQueryImpl(BundleContext bundleContext) {
     this.bundleContext = bundleContext;
     packageAdminReference = bundleContext.getServiceReference(PackageAdmin.class.getName());
+    packageAdmin = (PackageAdmin) bundleContext.getService(packageAdminReference);
   }
 
   @Override
-  public BundleQuery importsPackage(final String packageName) {
-    return addPredicate(new BundlePredicate() {
-      @Override
-      boolean matches(Bundle bundle) {
-        ExportedPackage[] exportedPackages = packageAdmin.getExportedPackages(packageName);
-        if (exportedPackages != null) {
-          for (ExportedPackage ep : exportedPackages) {
-            List<Bundle> importingBundles = Arrays.asList(ep.getImportingBundles());
-            if (importingBundles.contains(bundle))
-              return true;
-          }
-        }
-        return false;
-      }
-    });
+  public BundleQuery importsPackage(String packageName) {
+    return addPredicate(new ImportsPackagePredicate(packageAdmin, packageName));
   }
 
   @Override
   public BundleQuery exportsPackage(final String packageName) {
-    return addPredicate(new BundlePredicate() {
-      @Override
-      boolean matches(Bundle bundle) {
-        ExportedPackage[] exportedPackages = packageAdmin.getExportedPackages(bundle);
-        if (exportedPackages != null) {
-          for (ExportedPackage ep : exportedPackages) {
-            if (ep.getName().equals(packageName))
-              return true;
-          }
-        }
-        return false;
-      }
-    });
+    return addPredicate(new ExportsPackagePredicate(packageAdmin, packageName));
   }
 
   @Override
   public BundleQuery providesService(final String serviceInterface) {
-    return addPredicate(new BundlePredicate() {
-      @Override
-      boolean matches(Bundle bundle) {
-        for (ServiceReference sr : referencesFor(serviceInterface)) {
-          if (bundle.equals(sr.getBundle()))
-            return true;
-        }
-        return false;
-      }
-    });
+    return addPredicate(new ProvidesServicePredicate(serviceInterface));
   }
 
   @Override
   public BundleQuery consumesService(final String serviceInterface) {
-    return addPredicate(new BundlePredicate() {
-      @Override
-      boolean matches(Bundle bundle) {
-        ServiceReference[] inUse = bundle.getServicesInUse();
-        List<ServiceReference> available = referencesFor(serviceInterface);
-        if (inUse != null) {
-          for (ServiceReference sr : inUse) {
-            if (available.contains(sr))
-              return true;
-          }
-        }
-        return false;
-      }
-    });
+    return addPredicate(new ConsumesServicePredicate(serviceInterface));
   }
 
   @Override
   public BundleQuery hasHeader(final String key, final String value) {
-    return addPredicate(new BundlePredicate() {
-      @Override
-      boolean matches(Bundle bundle) {
-        String headerValue = (String) bundle.getHeaders().get(key);
-        return headerValue != null && headerValue.equals(value);
-      }
-    });
+    return addPredicate(new HasHeaderPredicate(key, value));
   }
 
   @Override
   public BundleQuery hasEntry(final String path) {
-    return addPredicate(new BundlePredicate() {
-      @Override
-      boolean matches(Bundle bundle) {
-        return bundle.getEntry(path) != null;
-      }
-    });
+    return addPredicate(new HasEntryPredicate(path));
   }
 
   @Override
   public BundleQuery inState(final int bundleState) {
-    return addPredicate(new BundlePredicate() {
-      @Override
-      boolean matches(Bundle bundle) {
-        return bundleState == bundle.getState();
-      }
-    });
+    return addPredicate(new InStatePredicate(bundleState));
   }
 
   @Override
   public List<Bundle> list() {
-    packageAdmin = (PackageAdmin) bundleContext.getService(packageAdminReference);
     List<Bundle> result = new LinkedList<Bundle>();
     Bundle[] bundles = bundleContext.getBundles();
 
@@ -166,19 +99,6 @@ class BundleQueryImpl implements BundleQuery {
   private BundleQuery addPredicate(BundlePredicate predicate) {
     predicates.add(predicate);
     return this;
-  }
-
-  private List<ServiceReference> referencesFor(String serviceInterface) {
-    List<ServiceReference> result = Collections.emptyList();
-    try {
-      ServiceReference[] serviceReferences = bundleContext.getServiceReferences(serviceInterface, null);
-      if (serviceReferences != null) {
-        result = Arrays.asList(serviceReferences);
-      }
-    } catch (InvalidSyntaxException e) {
-      // Invalid syntax impossible for null argument
-    }
-    return result;
   }
   
   List<BundlePredicate> getPredicates() {
