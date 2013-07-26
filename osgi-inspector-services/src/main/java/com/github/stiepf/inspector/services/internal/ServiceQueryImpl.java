@@ -13,7 +13,6 @@
  */
 package com.github.stiepf.inspector.services.internal;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -45,55 +44,24 @@ class ServiceQueryImpl implements ServiceQuery {
   }
 
   @Override
-  public ServiceQuery providedBy(final Bundle bundle) {
-    return addPredicate(new ServicePredicate() {
-      @Override
-      boolean matches(ServiceReference reference) {
-        return reference.getBundle().equals(bundle);
-      }
-    });
+  public ServiceQuery providedBy(Bundle bundle) {
+    return addPredicate(new ProvidedByPredicate(bundle));
   }
 
   @Override
-  public ServiceQuery consumedBy(final Bundle bundle) {
-    return addPredicate(new ServicePredicate() {
-      @Override
-      boolean matches(ServiceReference reference) {
-        Bundle[] usingBundles = reference.getUsingBundles();
-        if (usingBundles != null) {
-          return Arrays.asList(usingBundles).contains(bundle);
-        } else {
-          return false;
-        }
+  public ServiceQuery consumedBy(Bundle bundle) {
+    return addPredicate(new ConsumedByPredicate(bundle));
+  }
 
-      }
-    });
+  
+  @Override
+  public ServiceQuery hasProperty(String key) {
+    return addPredicate(new HasPropertyPredicate(key));
   }
 
   @Override
-  public ServiceQuery hasProperty(final String key) {
-    return addPredicate(new ServicePredicate() {
-      @Override
-      boolean matches(ServiceReference reference) {
-        return reference.getProperty(key) != null;
-      }
-    });
-  }
-
-  @Override
-  public ServiceQuery hasPropertyValue(final String key, final Object value) {
-    return addPredicate(new ServicePredicate() {
-      @Override
-      boolean matches(ServiceReference reference) {
-        Object property = reference.getProperty(key);
-        if (property != null) {
-          return property.equals(value);
-        } else {
-          return false;
-        }
-
-      }
-    });
+  public ServiceQuery hasPropertyValue(String key, Object value) {
+    return addPredicate(new HasPropertyValuePredicate(key, value));
   }
 
   @Override
