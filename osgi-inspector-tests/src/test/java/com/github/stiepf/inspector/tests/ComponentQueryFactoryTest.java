@@ -22,6 +22,7 @@ import javax.inject.Inject;
 
 import org.apache.aries.blueprint.BeanProcessor;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.Configuration;
@@ -60,9 +61,9 @@ public class ComponentQueryFactoryTest {
     );
   }
   
-  @Before
-  public void waitForServices() throws Exception {
-    Thread.sleep(50);
+  @BeforeClass
+  public static void waitForServices() throws Exception {
+    Thread.sleep(100);
   }
   
   @Test
