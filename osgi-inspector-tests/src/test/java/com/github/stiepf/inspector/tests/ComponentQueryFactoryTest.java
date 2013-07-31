@@ -15,6 +15,7 @@ package com.github.stiepf.inspector.tests;
 
 import static org.junit.Assert.*;
 import static org.ops4j.pax.exam.CoreOptions.*;
+import static com.github.stiepf.inspector.tests.Constants.*;
 
 import java.util.List;
 
@@ -53,9 +54,9 @@ public class ComponentQueryFactoryTest {
         mavenBundle("org.apache.aries", "org.apache.aries.util", "1.1.0"),
         mavenBundle("org.apache.aries.proxy", "org.apache.aries.proxy", "1.0.1"),
         mavenBundle("org.apache.aries.blueprint", "org.apache.aries.blueprint", "1.1.0"),
-        mavenBundle("com.github.stiepf.inspector", "osgi-inspector-bundles"),
-        mavenBundle("com.github.stiepf.inspector", "osgi-inspector-services"),
-        mavenBundle("com.github.stiepf.inspector", "osgi-inspector-components"),
+        mavenBundle(GROUP_ID, BUNDLES_ARTEFACT_ID, CURRENT_VERSION),
+        mavenBundle(GROUP_ID, SERVICES_ARTEFACT_ID, CURRENT_VERSION),
+        mavenBundle(GROUP_ID, COMPONENTS_ARTEFACT_ID, CURRENT_VERSION),
         junitBundles()
     );
   }

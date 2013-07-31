@@ -15,6 +15,7 @@ package com.github.stiepf.inspector.tests;
 
 import static org.junit.Assert.*;
 import static org.ops4j.pax.exam.CoreOptions.*;
+import static com.github.stiepf.inspector.tests.Constants.*;
 
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class BundleQueryFactoryTest {
   @Configuration
   public Option[] configure() {
     return options(
-        mavenBundle("com.github.stiepf.inspector", "osgi-inspector-bundles"),
+        mavenBundle(GROUP_ID, BUNDLES_ARTEFACT_ID, CURRENT_VERSION),
         junitBundles()
     );
   }

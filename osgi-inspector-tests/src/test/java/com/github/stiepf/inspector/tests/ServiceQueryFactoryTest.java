@@ -13,6 +13,7 @@
  */
 package com.github.stiepf.inspector.tests;
 
+import static com.github.stiepf.inspector.tests.Constants.*;
 import static org.junit.Assert.*;
 import static org.ops4j.pax.exam.CoreOptions.*;
 
@@ -47,7 +48,7 @@ public class ServiceQueryFactoryTest {
   @Configuration
   public Option[] configure() {
     return options(
-        mavenBundle("com.github.stiepf.inspector", "osgi-inspector-services"),
+        mavenBundle(GROUP_ID, SERVICES_ARTEFACT_ID, CURRENT_VERSION),
         junitBundles()
     );
   }
