@@ -32,5 +32,5 @@ public interface ServiceQuery {
 
   ServiceQuery matchesFilter(String filter);
 
-  List<ServiceReference> list();
+  List<ServiceReference> execute();
 }

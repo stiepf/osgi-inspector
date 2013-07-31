@@ -33,5 +33,5 @@ public interface BundleQuery {
 
   BundleQuery inState(int bundleState);
 
-  List<Bundle> list();
+  List<Bundle> execute();
 }

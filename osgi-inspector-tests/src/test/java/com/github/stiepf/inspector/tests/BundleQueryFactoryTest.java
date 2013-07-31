@@ -83,7 +83,7 @@ public class BundleQueryFactoryTest {
   }
   
   private void assertQuery(int expected, BundleQuery query) {
-    List<Bundle> result = query.list();
+    List<Bundle> result = query.execute();
     assertEquals(expected, result.size());
   }
 }

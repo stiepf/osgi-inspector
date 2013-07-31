@@ -31,6 +31,6 @@ public interface ComponentQuery {
 
   ComponentQuery reference();
 
-  List<ContainerDescription> list();
+  List<ContainerDescription> execute();
 
 }

@@ -59,7 +59,7 @@ public class FindComponentsCommand extends OsgiCommandSupport {
   @Override
   protected Object doExecute() throws Exception {
     ComponentQuery query = buildBlueprintQuery();
-    printResult(query.list());
+    printResult(query.execute());
     return null;
   }
 

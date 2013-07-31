@@ -49,24 +49,24 @@ public class BundleQueryImplTest {
   }
   
   @Test
-  public void listIncludesMatchingBundles() throws Exception {
+  public void executeIncludesMatchingBundles() throws Exception {
     BundlePredicate predicate = mockPredicate();
     when(predicate.matches(bundleMock1)).thenReturn(true);
     when(predicate.matches(bundleMock2)).thenReturn(true);
     expectList(bundleMock1, bundleMock2);
-    List<Bundle> result = underTest.list();
+    List<Bundle> result = underTest.execute();
     
     assertEquals(2, result.size());
     assertSame(bundleMock1, result.get(0));
   }
   
   @Test
-  public void listExcludesNonMatchingBundles() throws Exception {
+  public void executeExcludesNonMatchingBundles() throws Exception {
     BundlePredicate predicate = mockPredicate();
     when(predicate.matches(bundleMock1)).thenReturn(false);
     when(predicate.matches(bundleMock2)).thenReturn(true);
     expectList(bundleMock1, bundleMock2);
-    List<Bundle> result = underTest.list();
+    List<Bundle> result = underTest.execute();
     
     assertEquals(1, result.size());
     assertSame(bundleMock2, result.get(0));

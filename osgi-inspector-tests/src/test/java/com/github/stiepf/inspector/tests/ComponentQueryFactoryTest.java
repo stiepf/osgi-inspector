@@ -98,7 +98,7 @@ public class ComponentQueryFactoryTest {
   @Test
   public void references() throws Exception {
     Bundle blueprint = packageAdmin.getBundle(BeanProcessor.class);
-    assertTrue(underTest.createComponentQuery().bundleId(blueprint.getBundleId()).reference().list().isEmpty());
+    assertTrue(underTest.createComponentQuery().bundleId(blueprint.getBundleId()).reference().execute().isEmpty());
   }  
   
   @Test
@@ -119,7 +119,7 @@ public class ComponentQueryFactoryTest {
   }
   
   private void assertQuery(int expected, ComponentQuery query) {
-    List<ContainerDescription> cds = query.list();
+    List<ContainerDescription> cds = query.execute();
     // assuming a single blueprint container
     List<ComponentDescription> result = cds.get(0).getComponentDescriptions();
     assertEquals(expected, result.size());

@@ -58,7 +58,7 @@ public class FindServicesCommand extends OsgiCommandSupport {
   @Override
   protected Object doExecute() {
     ServiceQuery query = buildServiceQuery();
-    printResult(query.list());
+    printResult(query.execute());
     return null;
   }
 

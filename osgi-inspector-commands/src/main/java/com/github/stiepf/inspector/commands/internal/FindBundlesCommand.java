@@ -68,7 +68,7 @@ public class FindBundlesCommand extends OsgiCommandSupport {
   @Override
   protected Object doExecute() {
     BundleQuery bq = buildBundleQuery();
-    printResult(bq.list());
+    printResult(bq.execute());
     return null;
   }
 

@@ -75,7 +75,7 @@ class BundleQueryImpl implements BundleQuery {
   }
 
   @Override
-  public List<Bundle> list() {
+  public List<Bundle> execute() {
     List<Bundle> result = new LinkedList<Bundle>();
     Bundle[] bundles = bundleContext.getBundles();
 

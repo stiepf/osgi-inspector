@@ -89,7 +89,7 @@ public class ServiceQueryFactoryTest {
   }
   
   private void assertQuery(int expected, ServiceQuery query) {
-    List<ServiceReference> result = query.list();
+    List<ServiceReference> result = query.execute();
     assertEquals(expected, result.size());
   }
 }

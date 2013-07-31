@@ -71,7 +71,7 @@ class ServiceQueryImpl implements ServiceQuery {
   }
 
   @Override
-  public List<ServiceReference> list() {
+  public List<ServiceReference> execute() {
     List<ServiceReference> result = new LinkedList<ServiceReference>();
 
     ServiceReference[] references;

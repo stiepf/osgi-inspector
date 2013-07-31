@@ -83,7 +83,7 @@ class ComponentQueryImpl implements ComponentQuery {
 
   @SuppressWarnings("unchecked")
   @Override
-  public List<ContainerDescription> list() {
+  public List<ContainerDescription> execute() {
     List<ContainerDescription> result = new LinkedList<ContainerDescription>();
 
     try {

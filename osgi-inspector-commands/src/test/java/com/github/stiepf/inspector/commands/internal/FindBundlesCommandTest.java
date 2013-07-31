@@ -117,7 +117,7 @@ public class FindBundlesCommandTest {
     bundles.add(mockBundle());
     
     when(bundleQueryFactoryMock.createBundleQuery()).thenReturn(bundleQueryMock);
-    when(bundleQueryMock.list()).thenReturn(bundles);
+    when(bundleQueryMock.execute()).thenReturn(bundles);
     
     Object result = underTest.execute(sessionMock);
     assertNull(result);
