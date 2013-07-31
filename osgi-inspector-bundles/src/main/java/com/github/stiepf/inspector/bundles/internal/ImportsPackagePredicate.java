@@ -5,22 +5,21 @@ import java.util.List;
 
 import org.osgi.framework.Bundle;
 import org.osgi.service.packageadmin.ExportedPackage;
-import org.osgi.service.packageadmin.PackageAdmin;
 
 class ImportsPackagePredicate extends BundlePredicate {
 
-  private PackageAdmin packageAdmin;
+  private PackageAdminProvider pap;
   
   private String packageName;
   
-  ImportsPackagePredicate(PackageAdmin packageAdmin, String packageName) {
-    this.packageAdmin = packageAdmin;
+  ImportsPackagePredicate(PackageAdminProvider packageAdminProvider, String packageName) {
+    this.pap = packageAdminProvider;
     this.packageName = packageName;
   }
 
   @Override
   boolean matches(Bundle bundle) {
-    ExportedPackage[] exportedPackages = packageAdmin.getExportedPackages(packageName);
+    ExportedPackage[] exportedPackages = pap.getPackageAdmin().getExportedPackages(packageName);
     if (exportedPackages != null) {
       for (ExportedPackage ep : exportedPackages) {
         List<Bundle> importingBundles = Arrays.asList(ep.getImportingBundles());

@@ -31,7 +31,7 @@
     <dependency>
       <groupId>com.github.stiepf.inspector</groupId>
       <artifactId>osgi-inspector-components</artifactId>
-    </dependency>    
+    </dependency>
     <dependency>
       <groupId>org.osgi</groupId>
       <artifactId>org.osgi.core</artifactId>
@@ -73,6 +73,18 @@
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <systemProperties>
+            <property>
+              <name>current.version</name>
+              <value>${project.version}</value>
+            </property>
+          </systemProperties>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 

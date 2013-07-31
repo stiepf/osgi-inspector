@@ -23,7 +23,7 @@ import org.osgi.service.packageadmin.PackageAdmin;
 
 import com.github.stiepf.inspector.bundles.BundleQuery;
 
-class BundleQueryImpl implements BundleQuery {
+class BundleQueryImpl extends PackageAdminProvider implements BundleQuery {
 
   private final BundleContext bundleContext;
 
@@ -36,17 +36,16 @@ class BundleQueryImpl implements BundleQuery {
   BundleQueryImpl(BundleContext bundleContext) {
     this.bundleContext = bundleContext;
     packageAdminReference = bundleContext.getServiceReference(PackageAdmin.class.getName());
-    packageAdmin = (PackageAdmin) bundleContext.getService(packageAdminReference);
   }
 
   @Override
   public BundleQuery importsPackage(String packageName) {
-    return addPredicate(new ImportsPackagePredicate(packageAdmin, packageName));
+    return addPredicate(new ImportsPackagePredicate(this, packageName));
   }
 
   @Override
   public BundleQuery exportsPackage(final String packageName) {
-    return addPredicate(new ExportsPackagePredicate(packageAdmin, packageName));
+    return addPredicate(new ExportsPackagePredicate(this, packageName));
   }
 
   @Override
@@ -76,6 +75,8 @@ class BundleQueryImpl implements BundleQuery {
 
   @Override
   public List<Bundle> execute() {
+    retrieveService();
+    
     List<Bundle> result = new LinkedList<Bundle>();
     Bundle[] bundles = bundleContext.getBundles();
 
@@ -84,8 +85,27 @@ class BundleQueryImpl implements BundleQuery {
         result.add(bundle);
       }
     }
-    bundleContext.ungetService(packageAdminReference);
+    
+    releaseService();
     return result;
+  }
+
+  @Override
+  PackageAdmin getPackageAdmin() {
+    return packageAdmin;
+  }
+  
+  List<BundlePredicate> getPredicates() {
+    return predicates;
+  }
+
+  private void retrieveService() {
+    packageAdmin = (PackageAdmin) bundleContext.getService(packageAdminReference);
+  }
+
+  private void releaseService() {
+    bundleContext.ungetService(packageAdminReference);
+    packageAdmin = null;
   }
 
   private boolean allPredicatesMatch(Bundle bundle) {
@@ -101,7 +121,4 @@ class BundleQueryImpl implements BundleQuery {
     return this;
   }
   
-  List<BundlePredicate> getPredicates() {
-    return predicates;
-  }
 }

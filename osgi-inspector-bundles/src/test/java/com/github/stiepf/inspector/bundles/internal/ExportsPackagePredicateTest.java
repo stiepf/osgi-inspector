@@ -13,7 +13,7 @@ import org.osgi.service.packageadmin.ExportedPackage;
 import org.osgi.service.packageadmin.PackageAdmin;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ExportsPackagePredicateTest {
+public class ExportsPackagePredicateTest extends PackageAdminProvider {
 
   private static final String PACKAGE_NAME = "com.github.stiepf.inspector.bundles";
 
@@ -30,7 +30,7 @@ public class ExportsPackagePredicateTest {
   
   @Before
   public void setUp() {
-    underTest = new ExportsPackagePredicate(packageAdminMock, PACKAGE_NAME);
+    underTest = new ExportsPackagePredicate(this, PACKAGE_NAME);
   }
   
   @Test
@@ -47,4 +47,8 @@ public class ExportsPackagePredicateTest {
     assertFalse(underTest.matches(bundleMock));
   }
   
+  @Override
+  PackageAdmin getPackageAdmin() {
+    return packageAdminMock;
+  }
 }
