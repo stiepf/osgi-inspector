@@ -42,9 +42,8 @@ public class BundleQueryFactoryTest {
   
   @Configuration
   public Option[] configure() {
-    String version = System.getProperty("current.version");
     return options(
-        mavenBundle("com.github.stiepf.inspector", "osgi-inspector-bundles", version),
+        mavenBundle("com.github.stiepf.inspector", "osgi-inspector-bundles"),
         junitBundles()
     );
   }
